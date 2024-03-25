@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório</title>
+</head>
+
+<body>
+    <h1>Relatório</h1>
+    {% if 'email' in session %}
+    <h2>Relatório diário dos agendamentos:</h2>
+    {% for agendamento in agendamentos %}
+    <div>
+        <p><strong>Data:</strong> {{ agendamento.data }}</p>
+        <p><strong>Disciplina:</strong> {{ agendamento.disciplina }}</p>
+        <p><strong>Atividade:</strong> {{ agendamento.atividade }}</p>
+        <p><strong>Aluno:</strong> {{ agendamento.aluno }}</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Acesso não autorizado. Faça o login como professor.</p>
+    {% endif %}
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800            px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .agenda-item {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .agenda-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .agenda-item h3 {
+            margin-top: 0;
+        }
+
+        .agenda-item p {
+            margin-bottom: 5px;
+        }
+
+        .agenda-item button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .agenda-item button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Agenda</h1>
+        <form action="/agenda" method="POST">
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required>
+            <label for="disciplina">Disciplina:</label>
+            <input type="text" id="disciplina" name="disciplina" required>
+            <label for="atividade">Atividade:</label>
+            <textarea id="atividade" name="atividade" rows="4" required></textarea>
+            <button type="submit">Agendar</button>
+        </form>
+        <div class="agenda-container">
+            {% for agendamento in agendamentos %}
+            <div class="agenda-item">
+                <h3>{{ agendamento['data'] }}</h3>
+                <p><strong>Disciplina:</strong> {{ agendamento['disciplina'] }}</p>
+                <p><strong>Atividade:</strong> {{ agendamento['atividade'] }}</p>
+                <p><strong>Aluno:</strong> {{ agendamento['aluno'] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
+
